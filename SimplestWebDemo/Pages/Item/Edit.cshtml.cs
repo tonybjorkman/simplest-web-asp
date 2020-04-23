@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1;
+using Tony.SimpleDB;
 
 namespace SimplestWebDemo.Pages.Item
 {
     public class EditModel : PageModel
     {
         [BindProperty]
-        public Student Student { get; set; }
+        public Tony.SimpleDB.Item Student { get; set; }
 
-        public SchoolContext db;
+        public MyDbContext db;
 
-        public EditModel(SchoolContext dbctx)
+        public EditModel(MyDbContext dbctx)
         {
             db = dbctx;
         }
@@ -27,7 +27,7 @@ namespace SimplestWebDemo.Pages.Item
             {
                 return NotFound();
             }
-            Student = await db.Students.FirstOrDefaultAsync(m => m.StudentID == id);
+            Student = await db.Items.FirstOrDefaultAsync(m => m.ID == id);
             return Page();
         }
 
@@ -47,7 +47,7 @@ namespace SimplestWebDemo.Pages.Item
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(Student.StudentID))
+                if (!StudentExists(Student.ID))
                 {
                     return NotFound();
                 }
@@ -62,7 +62,7 @@ namespace SimplestWebDemo.Pages.Item
 
         private bool StudentExists(int id)
         {
-            return db.Students.Any(e => e.StudentID == id);
+            return db.Items.Any(e => e.ID == id);
         }
         #endregion
 

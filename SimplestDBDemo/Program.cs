@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1
+namespace Tony.SimpleDB
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            using (var ctx = new SchoolContext())
+            using (var ctx = new MyDbContext())
             {
-                var stud = new Student() { StudentName = "Billypopey" };
+                var itm = new Item() { Name = "Billypopey" };
                 var grade = ctx.Grades.FirstOrDefault();
                 if (grade is null)
                 {
-                    grade = new Grade() { GradeName = "GoodForMe" };
+                    grade = new SubItem() { Name = "GoodForMe" };
                 }
-                stud.Grade = grade;
-                ctx.Students.Add(stud);
+                itm.Grade = grade;
+                ctx.Items.Add(itm);
                 ctx.SaveChanges();
 
-                var student = ctx.Students.Single(s => s.StudentName == "Billypopey");
-                Console.WriteLine($"student {student.StudentName} grade: {student.Grade.GradeName} ");
-                //Console.WriteLine($"num: {grade.Students.Count()}");
-                stud.StudentName += "Saved";
-                stud.Grade.GradeName += "x";
+                var item = ctx.Items.Single(s => s.Name == "Billypopey");
+                Console.WriteLine($"student {item.Name} grade: {item.Grade.Name} ");
+
+                itm.Name += "Saved";
+                itm.Grade.Name += "x";
                 ctx.SaveChanges();
             }
 

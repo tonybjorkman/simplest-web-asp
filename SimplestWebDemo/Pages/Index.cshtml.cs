@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using WebApplication1;
+using Tony.SimpleDB;
 
 namespace SimplestWebDemo.Pages
 {
@@ -13,11 +13,11 @@ namespace SimplestWebDemo.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        private readonly SchoolContext db;
+        private readonly MyDbContext db;
 
-        public IEnumerable<Student> Students { get; set; }
+        public IEnumerable<Tony.SimpleDB.Item> Items { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, SchoolContext dbctx)
+        public IndexModel(ILogger<IndexModel> logger, MyDbContext dbctx)
         {
             _logger = logger;
             db = dbctx;
@@ -25,7 +25,7 @@ namespace SimplestWebDemo.Pages
 
         public void OnGet()
         {
-            Students = db.Students;
+            Items = db.Items;
 
         }
     }

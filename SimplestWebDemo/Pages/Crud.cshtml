@@ -27,10 +27,10 @@
         {
             <tr>
                 <td>@i</td>
-                <td>@item.StudentName</td>
+                <td>@item.Name</td>
                 <td>
-                    <a asp-page="./Item/Edit" asp-route-id="@item.StudentID">Edit</a> |
-                    <a asp-page="./Item/Delete" asp-route-id="@item.StudentID">Delete</a>
+                    <a asp-page="./Item/Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Item/Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
                 @{i++; }
             </tr>

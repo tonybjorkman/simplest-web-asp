@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace SimplestWebDemo.Pages
 {
-    public class PrivacyModel : PageModel
+    public class InfoModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<InfoModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public InfoModel(ILogger<InfoModel> logger)
         {
             _logger = logger;
         }

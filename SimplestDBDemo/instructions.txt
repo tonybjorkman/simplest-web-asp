@@ -1,0 +1,4 @@
+PM> add-migration CreateSchoolDB
+PM> update-database –verbose
+
+To update the database with current entities.

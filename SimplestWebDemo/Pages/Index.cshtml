@@ -6,10 +6,11 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @foreach (var s in Model.Students)
+    <p>This is an example app for ASP.NET Core using EF Core for data storage and Serilog for logging.</p>
+    <p>Base functionality is creating, retrieving, updating and deleting "items" in database with forms</p>
+    @foreach (var s in Model.Items)
     {
-        @s.StudentName<br />
+        @s.Name<br />
     }
-    
+    <img src="resources/duck.png" />
 </div>

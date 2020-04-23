@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApplication1;
+using Microsoft.Extensions.Logging;
+using Tony.SimpleDB;
 
 namespace SimplestWebDemo.Pages
 {
@@ -12,27 +13,32 @@ namespace SimplestWebDemo.Pages
     {
         public string Message;
 
-        public IEnumerable<Student> Entries;
+        public IEnumerable<Tony.SimpleDB.Item> Entries;
 
-        private SchoolContext db;
+        private readonly ILogger<CrudModel> _logger;
 
-        public CrudModel(SchoolContext dbctx)
+
+        private MyDbContext db;
+
+        public CrudModel(ILogger<CrudModel> logger, MyDbContext dbctx)
         {
             db = dbctx;
+            _logger = logger;
         }
 
         public void OnGet()
         {
             Message = "";
-            Entries = db.Students;
+            Entries = db.Items;
         }
 
         public void OnPost(string name)
         {
-            db.Students.Add(new Student(){StudentName = name});
+            db.Items.Add(new Tony.SimpleDB.Item(){ Name = name});
             db.SaveChanges();
+            _logger.LogInformation($"Added item {name} to DB");
             Message = name;
-            Entries = db.Students;
+            Entries = db.Items;
         }
     }
 }
