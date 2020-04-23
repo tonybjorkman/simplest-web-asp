@@ -1,0 +1,13 @@
+﻿@page "{id:int}"
+@model SimplestWebDemo.Pages.Item.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@Model.Student.StudentName</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Student.StudentID" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-page="../Crud">Back to List</a>
+</form>
